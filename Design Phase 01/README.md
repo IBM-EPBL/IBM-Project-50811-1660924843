@@ -1,12 +1,16 @@
 ## PROJECT DESIGN & PLANNING
 
-<h2>DESIGN PHASE 01</h2>
+## DESIGN PHASE 01
+<h5>1. ARCHITECTURE</h5>
+<img src=".\Architecture\Solution Architecture.gif">
+<br>
+<br>
+<h5>2. PROBLEM FIT SOLUTION</h5>
+<img src=".\Problem Solution fit\Problem-Solution fit.gif">
+<br>
+<br>
+<h5>3.PROBLEM FIT SOLUTION</h5>
 
-    - ARCHITECTURE
-    ![](https://github.com/IBM-EPBL/IBM-Project-50811-1660924843/blob/main/Design%20Phase%2001/Architecture/Solution%20Architecture.gif)
-    - PROBLEM SOLUTION FIT
-    ![](https://github.com/IBM-EPBL/IBM-Project-50811-1660924843/blob/main/Design%20Phase%2001/Problem%20Solution%20fit/Problem-Solution%20fit.gif)
-    - PROPOSED SOLUTION
 
 <h3>Team details</h3>
 
