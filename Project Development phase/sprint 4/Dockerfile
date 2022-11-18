@@ -11,6 +11,6 @@ RUN set -e; \
                 python3-dev \
                 postgresql-dev \
         ;
-COPY requirements.txt /flask
+COPY requirements.txt /flask 
 RUN pip install -r requirements.txt
 CMD ["python","index.py"]
