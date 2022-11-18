@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" sizes="192x192" href="../static/images/icon.png">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style1.css">
+
+    <title>Analytics</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <a class="navbar-brand text-white" href="/"><img src="../static/images/logo.png" width="50">Customer Care</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class=" nav-item">
+                    <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{url_for('agentregister')}}">Register Agent</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                </button>
+            </div>
+            <div class="img bg-wrap text-center py-4">
+                <div class="user-logo">
+                    <img src="../static/images/admin.png" width="50%">
+                </div>
+            </div>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a class="text-white text-decoration-none" href="{{ url_for('admindashboard') }}"><img class="mr-1 mb-1" src="../static/images/home.png" width="20"> Home</a>
+                </li>
+                <li>
+                    <a class="text-white text-decoration-none" href="{{ url_for('adminanalytics') }}"><img class="mr-1 mb-1" src="../static/images/analytics.png" width="20"> Analytics</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div id="content" class="p-4 p-md-5 pt-5 bg-white">
+            <h3 class="text-center">Analytics</h3>
+            {% for row in JenTile %}
+            <form name="JenTile">
+                <input type="text" name="JenTile" value="{{row.JenTile}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in AllieGrater %}
+            <form name="AllieGrater">
+                <input type="text" name="AllieGrater" value="{{row.AllieGrater}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in RaySin %}
+            <form name="RaySin">
+                <input type="text" name="RaySin" id="JenTile" value="{{row.RaySin}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in category1 %}
+            <form name="category1">
+                <input type="text" name="category1" id="category1" value="{{row.Category1}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in category2 %}
+            <form name="category2">
+                <input type="text" name="category2" id="category2" value="{{row.Category2}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in category3 %}
+            <form name="category3">
+                <input type="text" name="category3" id="category3" value="{{row.Category3}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in category4 %}
+            <form name="category4">
+                <input type="text" name="category4" id="category4" value="{{row.Category4}}" hidden>
+            </form>
+            {% endfor %}
+            {% for row in category5 %}
+            <form name="category5">
+                <input type="text" name="category5" id="category5" value="{{row.Category5}}" hidden>
+            </form>
+            {% endfor %}
+            <div class="d-flex justify-content-center mt-5" id="chart_div" ></div>
+            <div class="d-flex justify-content-center" id="top_x_div"></div>
+        </div>
+    </div>
+    
+    
+    <script src="../static/js/loader.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/js/popper.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.load('current', {
+            'packages': ['bar']
+        });
+        google.charts.setOnLoadCallback(drawChart1);
+        google.charts.setOnLoadCallback(drawStuff);
+
+        function drawChart1() {
+            var JenTile = parseInt(document.forms["JenTile"]["JenTile"].value);
+            var AllieGrater = parseInt(document.forms["AllieGrater"]["AllieGrater"].value);
+            var RaySin = parseInt(document.forms["RaySin"]["RaySin"].value);
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Jen Tile', JenTile],
+                ['Allie Grater', AllieGrater],
+                ['Ray Sin', RaySin]
+            ]);
+            var options = {
+                'title': '% of Tickets Solved by Agents',
+                'width': 400,
+                'height': 300
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+        function drawStuff() {
+            var category1 = parseInt(document.forms["category1"]["category1"].value);
+            var category2 = parseInt(document.forms["category2"]["category2"].value);
+            var category3 = parseInt(document.forms["category3"]["category3"].value);
+            var category4 = parseInt(document.forms["category4"]["category4"].value);
+            var category5 = parseInt(document.forms["category5"]["category5"].value);
+            var data = new google.visualization.arrayToDataTable([
+                ['Categories', 'Total'],
+                ["Product Exchange or Return", category1],
+                ["Product Out of Stock", category2],
+                ["Payments & Transactions", category3],
+                ["Product Delivery", category4],
+                ['Other', category5]
+            ]);
+
+            var options = {
+                width: 800,
+                legend: {
+                    position: 'none'
+                },
+                chart: {
+                    title: 'Categories Used by Customers'
+                },
+                axes: {
+                    x: {
+                        0: {
+                            side: 'top'
+                        } // Top x-axis.
+                    }
+                },
+                bar: {
+                    groupWidth: "90%"
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        };
+    </script>
+    
+</body>
+
+</html>
