@@ -22,7 +22,7 @@
 | Team Leader | 210419104071 | &emsp; JANESHWAR S &emsp; &emsp; |
 | Team Members &emsp; | 210419104158 <br/> 210419104056 <br/> 210419104008 | &emsp; SIDDHARTH B <br/> &emsp; GELLI CHAKRADHAR <br/>&emsp; ALLA SRINIVASULU |
 
-<h3>Software Required</h3>
+<h2>Software Required</h2>
 
 * Python
 * Flask
@@ -30,7 +30,8 @@
 * SQL
 
 
-<h3>Overview</h3>
+
+<h2>Overview</h2>
 
 * This Application has been developed to help the customer in processing their complaints.  
 * The customers can raise the ticket with a detailed description of the issue.  
