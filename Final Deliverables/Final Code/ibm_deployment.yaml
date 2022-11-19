@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phase-finallist
+  name: ccr
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: phase-finallist
+      app: ccr
   template:
     metadata:
       labels:
-        app: phase-finallist
+        app: ccr
 
     spec:
       containers:
-        - name: finaldeliver
-          image: jp.icr.io/finaldeliverable/finaldeliver
+        - name: ccr
+          image: icr.io/ccr1/ccr
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
