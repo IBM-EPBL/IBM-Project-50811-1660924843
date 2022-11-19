@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" sizes="192x192" href="../static/images/icon.png">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/style1.css">
+    
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <a class="navbar-brand text-white" href="/"><img src="../static/images/logo.png" width="50">Customer Care</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class=" nav-item">
+                    <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{url_for('agentregister')}}">Register Agent</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                </button>
+            </div>
+            <div class="img bg-wrap text-center py-4">
+                <div class="user-logo">
+                    <img src="../static/images/admin.png" width="50%">
+                </div>
+            </div>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a class="text-white text-decoration-none" href="{{ url_for('admindashboard') }}"><img class="mr-1 mb-1" src="../static/images/home.png" width="20"> Home</a>
+                </li>
+                <li>
+                    <a class="text-white text-decoration-none" href="{{ url_for('adminanalytics') }}"><img class="mr-1 mb-1" src="../static/images/analytics.png" width="20"> Analytics</a>
+                </li>
+
+            </ul>
+        </nav>
+
+
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h2 class="text-center mb-5">Admin Dashboard</h2>
+            <section>
+                <div class="row m-0">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        
+                        <div class="card px-3 py-3 text-center shadow" style="border-top:5px solid red;"><h5>{{pending}}</h5>No. of tickets Pending</div>
+                        
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card px-3 py-3 text-center shadow" style="border-top:5px solid #ffa500;"><h5>{{assigned}}</h5>No. of tickets Assigned to Agent</div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="card px-3 py-3 text-center shadow" style="border-top:5px solid #008000;"><h5>{{completed}}</h5>No. of tickets solved</div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container-fluid card my-5 p-3">
+                    <!-- <p>Hi! {{session.cemail}}</p>-->
+                    <h4 class="my-3">All Tickets:</h4>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <form class="form-inline">
+                                <div class="form-group mb-2">
+                                    <label for="search" class="mr-3">Apply Filter: </label>
+                                    <select class="form-control form-control-sm" id="filter">
+                                        <option value="All" selected>All</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Agent Assigned">Agent Assigned</option>
+                                        <option value="Completed">Closed</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex justify-content-md-end">
+                            <form class="form-inline">
+                                <div class="form-group mb-2">
+                                    <label for="search" class="mr-3">Search Table: </label>
+                                    <input class="form-control form-control-sm" type="text" id="myInput"
+                                        placeholder="Start Typing Here...">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-hover table-responsive-md">
+                        <thead>
+                            <tr class="text-center tr-bg">
+                                <th scope="col">#TicketNo</th>
+                                <th scope="col">Ticket Details</th>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Assign Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            {% for row in data %}
+                            <tr>
+                                <td scope="row" class="text-center">{{row['TICKETNO']}}</td>
+                                <td><a class="btn text-primary" data-toggle="collapse"
+                                        href="#collapseExample{{row['TICKETNO']}}" role="button" aria-expanded="false"
+                                        aria-controls="collapseExample{{row['TICKETNO']}}">
+                                        View Details
+                                    </a>
+                                    <div class="collapse" id="collapseExample{{row['TICKETNO']}}">
+                                        <div class="card card-body">
+                                            <p><b>Email:</b></p>
+                                            <p>{{row['CUSTOMER_EMAIL']}}</p>
+                                            <p><b>Category: </b>{{row['CATEGORY']}}</p>
+                                            <p><b>Subject:</b></p>
+                                            <p>{{row['SUBJECT']}}</p>
+                                            <p><b>Description:</b></p>
+                                            <p>{{row['DESCRIPTION']}}</p>
+                                            <p><b>Agent Name: </b>{{row['AGENT_NAME']}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">{{row['TIMESTAMP']}}</td>
+                                <td class="text-center"><span class="badge badge-pill badge-primary {{row['STATUS_A']}}">{{row['STATUS_A']}}</span></td>
+                                <td>
+                                    <form class="form-inline" action="{{ url_for('admindashboard') }}" method="post">
+
+                                        <div class="form-group mr-2 my-1">
+                                            <select name="agentassign" class="form-control form-control-sm"
+                                                id="exampleFormControlSelect1" required>
+                                                <option value="" disabled selected>Select Agent</option>
+                                                {% for option in agent %}
+                                                <option value="{{option['AGENT_NAME']}}">{{option['AGENT_NAME']}}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <input type="hidden" name="ticketno" id="ticketno" value="{{row['TICKETNO']}}"
+                                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="hidden" name="adminusername" id="ticketno"
+                                            value="{{row['AGENT_USERNAME']}}" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp">
+                                        <input type="submit" class="btn btn-sm disable-{{row['STATUS_A']}} my-1" value="Assign">
+
+
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/js/popper.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#filter").change(function () {
+                var value = $('option:selected', this).text().toLowerCase();
+                if (value == 'all') {
+                    value = '';
+                }
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $(".Closed").addClass("badge badge-pill badge-success Closed");
+            $(".pending").addClass("badge badge-pill badge-danger pending");
+            $(".Agent").addClass("badge badge-pill badge-warning Agent Assigned");
+            if($("span").hasClass("pending")){
+                $(".disable-pending").addClass("btn-primary");
+            }
+            if($("span").hasClass("Agent")){
+                $(".disable-Agent").attr("value", "Re-Assign");
+                $(".disable-Agent").addClass("btn-info");
+            }
+            if($("span").hasClass("Closed")){
+                $(".disable-Closed").attr("disabled", "true");
+                $(".disable-Closed").addClass("btn-secondary no-drop");
+            }
+        });
+    </script>
+</body>
+
+</html>
