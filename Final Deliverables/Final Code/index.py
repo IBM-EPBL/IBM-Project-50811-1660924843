@@ -248,7 +248,7 @@ def welcome():
          ts = time.time()
          timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
          app.logger.info('LN ::::: 123')
-         stmt= ibm_db.prepare(conn,'INSERT INTO complaint_details VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )')
+         stmt= ibm_db.prepare(conn,'INSERT INTO complaint_details VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,? )')
          ibm_db.bind_param(stmt,1,ticketno)
          ibm_db.bind_param(stmt,2,name)
          ibm_db.bind_param(stmt,3,email)
@@ -258,6 +258,7 @@ def welcome():
          ibm_db.bind_param(stmt,7,timestamp)
          ibm_db.bind_param(stmt,8,"pending")
          ibm_db.bind_param(stmt,9,"pending")
+         ibm_db.bind_param(stmt,10,"")
          ibm_db.execute(stmt)
          try:
             mailmsg = Message('Customer Care Registry', sender = 'Request Received', recipients = ['{}', email])
