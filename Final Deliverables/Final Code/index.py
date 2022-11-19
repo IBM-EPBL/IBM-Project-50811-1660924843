@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
-import re, random, smtplib, os, time, datetime
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+import random, time, datetime
 from flask_mail import Mail, Message
 import ibm_db
 from logging.config import dictConfig
