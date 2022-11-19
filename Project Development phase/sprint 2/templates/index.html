@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#34A5DA" />
+
+    <link rel="icon" sizes="192x192" href="../static/images/icon.png" />
+
+    <link rel="manifest" href="../static/manifest.json" />
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>Customer Care Registry</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+      <a class="navbar-brand text-white" href="/"
+        ><img src="../static/images/logo.png" width="50" />Customer Care</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{url_for('customerlogin')}}"
+              >Customer Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{url_for('agentlogin')}}"
+              >Agent Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{url_for('adminlogin')}}"
+              >Admin Login</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="body">
+      <div class="row m-0 py-5 py-lg-0">
+        <div class="col-md-6 align-self-center pl-5" data-aos="fade-up-right">
+          <p
+            class="m-0"
+            style="font-family: 'Reggae One', cursive; font-size: large"
+          >
+            We Are Here For Care 24/7
+          </p>
+          <h1>TEAM ID: PNT2022TMID24627</h1>
+          <p>
+            210419104071 -Team Leader - JANESHWAR S <br />
+            210419104158 -Team member- SIDDHARTH B<br />
+            210419104056 -Team member- GELLI CHAKRADHAR<br />
+            210419104008 -Team member- ALLA SRINIVASULU<br />
+          </p>
+          <a
+            class="btn btn-primary mt-3"
+            href="{{ url_for('customerregister')}}"
+            >Get Started</a
+          >
+        </div>
+        <div
+          class="col-md-6 align-self-center text-center"
+          data-aos="fade-down-left"
+        >
+          <img class="parallax-img" src="../static/images/background1.png" />
+        </div>
+      </div>
+    </section>
+
+    <section class="container my-5">
+      <h2 class="text-center mb-4">Get Started in 4 Steps</h2>
+      <div class="row">
+        <div class="col-md-8">
+          <div
+            class="d-flex card shadow-sm flex-row animate1 my-4 px-5 py-3"
+            data-aos="fade-right"
+          >
+            <div class="mr-2">
+              <img src="../static/images/login.png" width="70" />
+            </div>
+            <div>
+              <h5>1. Register &amp; Login</h5>
+              <p>
+                If you are a new user register first then login with your
+                credentials you will get a dashboard
+              </p>
+            </div>
+          </div>
+          <div
+            class="d-flex card shadow-sm flex-row animate1 my-4 px-5 py-3"
+            data-aos="fade-right"
+          >
+            <div class="mr-2">
+              <img src="../static/images/add-file.png" width="70" />
+            </div>
+            <div>
+              <h5>2. Create Ticket</h5>
+              <p>
+                In a dashboard you can file complaint by creating a ticket &amp;
+                also you can also status of your tickets.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 align-self-center text-center">
+          <img
+            class="d-none d-md-block ml-auto"
+            data-aos="fade-left"
+            src="../static/images/service1.png"
+            width="70%"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 align-self-center text-center">
+          <img
+            class="d-none d-md-block"
+            data-aos="fade-right"
+            src="../static/images/service2.png"
+            width="70%"
+          />
+        </div>
+        <div class="col-md-8">
+          <div
+            class="d-flex card shadow-sm flex-row my-4 px-5 py-3"
+            data-aos="fade-left"
+          >
+            <div class="mr-2">
+              <img src="../static/images/agent.png" width="70" />
+            </div>
+            <div>
+              <h5>3. Agent will be Assigned</h5>
+              <p>
+                After ticket submition an agent will be assigned. you will get
+                notification through mail &amp; you can also check status of
+                your ticket in dashboard.
+              </p>
+            </div>
+          </div>
+          <div
+            class="d-flex card shadow-sm flex-row my-4 px-5 py-3"
+            data-aos="fade-left"
+          >
+            <div class="mr-2">
+              <img src="../static/images/completed-task.png" width="70" />
+            </div>
+            <div>
+              <h5>4. Complaint Solved</h5>
+              <p>
+                When the complaint is solved you will get a notification through
+                mail &amp; you can also track status in your dashboard.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Frequently Asked Questions (FAQ)</h2>
+        <div data-aos="zoom-in">
+          <div class="accordion">Q: I have placed my order what next?</div>
+          <div class="panel">
+            <span class="badge badge-success">Answer</span>
+            <p>
+              Sit back and relax! Once your order is confirmed, we will share
+              the order id and tracking details via E-mail/SMS.
+            </p>
+          </div>
+
+          <div class="accordion">Q: What can I return?</div>
+          <div class="panel">
+            <span class="badge badge-success">Answer</span>
+            <p>
+              You may request returns for most items you buy from us
+              within the return window, except those that are explicitly
+              identified as not returnable.
+            </p>
+          </div>
+
+          <div class="accordion">Q: When will I get my refund?</div>
+          <div class="panel">
+            <span class="badge badge-success">Answer</span>
+            <p>
+              Refunds are processed after we receive the item. Once received,
+              refund times depend on the payment method selected. Typically it
+              comes within 3-4 business days.
+            </p>
+          </div>
+
+          <div class="accordion">
+            Q: What if I miss my  order delivery?
+          </div>
+          <div class="panel">
+            <span class="badge badge-success">Answer</span>
+            <p>
+              Do not worry, the delivery agent will try to deliver again on the
+              next working day. You can also call the delivery agent to get the
+              latest delivery update.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white add-button text-center py-5">
+      <h5 class="mb-3">
+        Install our Customer Care App To Your Home Screen
+      </h5>
+      <p>If you want to pin to your home screen.</p>
+      <p>Tap Add to Home Screen and then it will added to your home screen.</p>
+      <button class="btn btn-primary mb-5">Add to Home Screen</button>
+    </section>
+
+    <section>
+      <div class="row m-0">
+        <div class="col-md-6 text-center m-auto p-5" data-aos="zoom-in">
+          <h3>Subscribe to our Newsletter</h3>
+          <em
+            >We will update you with all the latest products &amp; services.</em
+          >
+          <form class="mt-2" method="post" action="/">
+            <div class="row m-0">
+              <div class="col-md-9 p-0">
+                <input
+                  type="email"
+                  class="form-control my-1 w-100"
+                  id="email"
+                  name="email"
+                  placeholder="Enter Email Address"
+                  required
+                />
+              </div>
+              <div class="col-md-3">
+                <input
+                  type="submit"
+                  class="btn btn-primary my-1"
+                  value="Subscribe"
+                />
+              </div>
+            </div>
+          </form>
+
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          <div
+            class="alert alert-primary alert-dismissible fade show msg"
+            role="alert"
+          >
+            {% for message in messages %} {{ message }} {% endfor %}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endif %} {% endwith %} {% block body %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <script src="../static/app.js"></script>
+    <script src="../static/js/aos.js"></script>
+    <script src="../static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script>
+      AOS.init({
+        once: "true",
+      });
+    </script>
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

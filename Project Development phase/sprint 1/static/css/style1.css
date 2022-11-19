@@ -1,0 +1,43 @@
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #32373d;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  position: relative;
+}
+
+#sidebar .h6 {
+  color: #fff;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar.active .custom-menu {
+  margin-right: -50px;
+}
+
+#sidebar.active .btn.btn-primary:before {
+  content: "\2B9E";
+  
+  right: 2px !important;
+}
+
+#sidebar.active .btn.btn-primary:after {
+  display: none;
+}
+
+
+#sidebar ul.components {
+  padding: 0;
+}
+
+
+
+#sidebar ul li>ul {
+  margin-left: 10px;
+}

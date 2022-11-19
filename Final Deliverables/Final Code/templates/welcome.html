@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" sizes="192x192" href="../static/images/icon.png">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Customer Dashboard</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow">
+        <a class="navbar-brand text-white" href="../"><img src="../static/images/logo.png" width="50">Customer Care</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class=" nav-item">
+                    <a class="nav-link text-white" href="../">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{url_for('logout')}}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible fade show msg" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+
+
+    <h2 class="text-center my-5">My Dashboard</h2>
+
+
+    <section>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Complaint Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <form action="{{ url_for('welcome') }}" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" name="email" class="form-control" value="{{session.cemail}}"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+                                    required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="category" class="mr-3">Select Category</label>
+                                <select class="form-control" name="category" required>
+                                    <option value="" selected disabled>Select</option>
+                                    <option value="Product exchange or return">Product Exchange or Return</option>
+                                    <option value="Product out of stock">Product Out of Stock</option>
+                                    <option value="Payments & Transactions">Payments &amp; Transactions</option>
+                                    <option value="Product Delivery">Product Delivery</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Subject</label>
+                                <input type="text" name="subject" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Detailed Description</label>
+                                <textarea rows="4" name="description" class="form-control" id="exampleInputPassword1"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="card shadow-sm my-5 p-3">
+                <h5>Hello! {{cname.customer_name}}</h5>
+                <P>Before creating a support ticket please read Frequently Asked Questions (FAQ) in Home Page</P>
+                <a href="#" class="btn btn-primary width-md-25" data-toggle="modal" data-target="#exampleModal">&#43;&nbsp;Create
+                    Ticket</a>
+            </div>
+            <div class="card shadow-sm my-5 p-3">
+                <h4 class="my-3">My Tickets:</h4>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <label for="search" class="mr-3">Apply Filter: </label>
+                                <select class="form-control form-control-sm" id="filter">
+                                    <option value="All" selected>All</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Agent Assigned">Agent Assigned</option>
+                                    <option value="Completed">Closed</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-md-end">
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <label for="search" class="mr-3">Search Table: </label>
+                                <input class="form-control form-control-sm" type="text" id="myInput"
+                                    placeholder="Start Typing Here...">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <table class="table table-bordered table-hover table-responsive-md">
+                    <thead>
+                        <tr class="text-center tr-bg">
+                            <th scope="col">#TicketNo</th>
+                            <th scope="col">Ticket Details</th>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Agent Name</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        {% for row in data %}
+                        <tr class="text-center">
+                            <td scope="row">{{row['TICKETNO']}}</td>
+                            <td>
+                                <a class="btn text-primary" data-toggle="collapse"
+                                    href="#collapseExample{{row.ticket_no}}" role="button" aria-expanded="false"
+                                    aria-controls="collapseExample{{row.ticketno}}">
+                                    View Details
+                                </a>
+                                <div class="collapse" id="collapseExample{{row.ticket_no}}">
+                                    <div class="card card-body">
+                                        <p><b>Subject:</b></p>
+                                        <p>{{row['SUBJECT']}}</p>
+                                        <p><b>Description:</b></p>
+                                        <p>{{row['DESCRIPTION']}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{row['TIMESTAMP']}}</td>
+                            <td>{{row['AGENT_NAME']}}</td>
+                            <td><span class="badge badge-pill badge-primary {{row['STATUS_A']}}">{{row['STATUS_A']}}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#filter").change(function () {
+                var value = $('option:selected', this).text().toLowerCase();
+                if (value == 'all') {
+                    value = '';
+                }
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $(".Closed").addClass("badge badge-pill badge-success Closed");
+            $(".pending").addClass("badge badge-pill badge-danger pending");
+            $(".Agent").addClass("badge badge-pill badge-warning Agent Assigned");
+        });
+    </script>
+</body>
+
+</html>
