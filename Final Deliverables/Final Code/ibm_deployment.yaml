@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ccr
-          image: icr.io/ccr1/ccr
+          image: icr.io/sj123/ccr
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
