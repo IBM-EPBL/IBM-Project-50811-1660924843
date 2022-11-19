@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ccr
+  name: sj123
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ccr
+      app: sj123
   template:
     metadata:
       labels:
-        app: ccr
+        app: sj123
 
     spec:
       containers:
-        - name: ccr
+        - name: sj123
           image: icr.io/sj123/ccr
           imagePullPolicy: Always
           ports:
