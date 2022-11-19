@@ -29,7 +29,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'care2'
 
-mysql = MySQL(app)
 
 mail= Mail(app)
 
